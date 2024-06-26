@@ -12,7 +12,7 @@
       systems = [ "x86_64-linux" "aarch64-linux" ];
       perSystem = { config, self', inputs', pkgs, system, ... }:
         let
-          godot = pkgs.godot_4.overrideAttrs (p: f: rec {
+          godot = pkgs.godot_4.overrideAttrs (old: rec {
             version = "4.3.0beta2";
             commitHash = "95110ddcb41ba4b9b1f8c9bf58c8910f6616e60a";
 
@@ -25,12 +25,9 @@
           });
          in { 
           packages = rec {
-            release = pkgs.callPackage godot { withTarget = "template_release"; };
-            debug = pkgs.callPackage godot { withTarget = "template_debug"; };
-            editor = pkgs.callPackage godot { withTarget = "editor"; };
-            default = editor;
+            default = godot;
           };
-          devShells.default = config.packages.editor;
+          devShells.default = config.packages.default;
         };
       flake = {
       };
