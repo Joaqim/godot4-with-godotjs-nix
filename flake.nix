@@ -14,14 +14,14 @@
         let
 #          godot = pkgs.godot_4.overrideAttrs (old: rec {
           godot = pkgs.godot_4.overrideAttrs rec {
-            version = "4.3.0beta2";
-            commitHash = "25de53e147a04ba15afc461b3ad4aa1884ff927d";
+            version = "4.3.0-rc";
+            commitHash = "3e0c10d3931afb62a30f26532a9f7709ee68bf2c";
 
             src = pkgs.fetchFromGitHub {
               owner = "godotengine";
               repo = "godot";
               rev = commitHash;
-              sha256 = "sha256-wQeOcvqJ8AWrM40WtM40QJEtzD7MYnm4OKiG4+c0fd0=";
+              sha256 = "sha256-/MC5cCIVXclm4YoeDA6in0v/XJFMGUHvVA+lkD/1MUY=";
 #              sha256 = pkgs.lib.fakeSha256;
             };
             outputs = [ "out" ];
