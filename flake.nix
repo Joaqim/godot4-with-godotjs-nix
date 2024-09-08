@@ -56,7 +56,7 @@
 
         # Override the default Godot package to add GodotJS module
         godot = let
-          commitHash = "ff9bc0422349219b337b015643544a0454d4a7ee";
+          commitHash = "3504c98c1233bbd2506e89ce46509bc79afaec17";
 
           godot_src = pkgs.fetchFromGitHub rec {
             owner = "godotengine";
@@ -68,7 +68,7 @@
         in
           pkgs.godot_4.overrideAttrs (old: {
             inherit commitHash;
-            version = "4.3.0";
+            version = "4.2.0";
 
             srcs = [
               godot_src
