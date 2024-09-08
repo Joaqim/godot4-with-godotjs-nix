@@ -35,7 +35,7 @@
           };
         in
           pkgs.stdenv.mkDerivation {
-            name = "godotjs";
+            name = "GodotJS";
 
             srcs = [
               GodotJS_src
@@ -47,6 +47,7 @@
               cp -r ${GodotJS_src}/* .
               unzip ${v8zip} -d .
             '';
+
             installPhase = ''
               mkdir -p "$out"
               cp -r ./* $out/
@@ -73,10 +74,20 @@
               godot_src
               godotjs
             ];
+
             sourceRoot = "godot";
+            nativeBuildInputs = old.nativeBuildInputs ++ [pkgs.mold];
 
             preBuild = ''
-              ln -s ../godotjs ./modules/GodotJS
+              mkdir -p ./modules/GodotJS
+              cp -r ../GodotJS ./modules/GodotJS
+              chmod -R 755 ./modules/GodotJS
+            '';
+
+            buildPhase = ''
+              runHook preBuild
+              scons platform=linuxbsd dev_build=yes
+              runHook postBuild
             '';
 
             outputs = ["out"];
