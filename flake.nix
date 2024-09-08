@@ -80,7 +80,7 @@
 
             preBuild = ''
               mkdir -p ./modules/GodotJS
-              cp -r ../GodotJS ./modules/GodotJS
+              cp -r ../GodotJS/* ./modules/GodotJS/
               chmod -R 755 ./modules/GodotJS
             '';
 
